@@ -86,6 +86,8 @@ header .login .login_btn i {
 .app .balance .balance_value {
   font-size: 2.5rem;
 }
+
+/*MOVEMENTS START  */
 .movements {
   grid-row: 2 / span 3;
   /* border: 1px solid; */
@@ -128,26 +130,75 @@ header .login .login_btn i {
   font-size: 0.8rem;
   margin-left: auto;
 }
+/* MOVEMENTS END */
+
+/* FORM START */
 .form {
   display: grid;
   grid-template-columns: 2.5fr 2.5fr 1fr;
   grid-template-rows: auto auto;
   gap: 0.4rem 1rem;
 }
-.form_input {
+.form__input {
   width: 100%;
   border: none;
+  background-color: rgba(255, 255, 255, 0.4);
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+  color: #333;
+  padding: 0.3rem 1rem;
+  border-radius: 0.7rem;
+  transition: all 0.3s;
 }
+.form__btn {
+  border: none;
+  border-radius: 0.7rem;
+  font-size: 1rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+/* FORM END */
+
+/* OPERATION START */
 .operation_transfer {
   background-image: var(--yellow);
+}
+
+.operation_loan {
+  background-image: var(--green);
+}
+.operation_close {
+  background-image: var(--red);
 }
 .operation {
   padding: 3rem 4rem;
   color: #333;
   border-radius: 1rem;
 }
+
+/* OPERATION END */
 .summary {
   grid-row: 5/6;
-  padding: 0.3rem;
+  display: flex;
+  align-items: baseline;
+  padding: 0 0.3rem;
+  margin-top: 1rem;
+}
+
+.summary__label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-right: 0.8rem;
+}
+
+.summary__value--in {
+  color: #66c873;
+}
+.summary__value {
+  font-size: 2.2rem;
+  margin-right: 2.5rem;
 }
 /* <!-- MAIN APP END --> */

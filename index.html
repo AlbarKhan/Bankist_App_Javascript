@@ -118,9 +118,17 @@
           <div class="movements__value">-$30.00</div>
         </div>
       </div>
-      <div class="summary"></div>
+      <div class="summary">
+        <p class="summary__label">In</p>
+        <p class="summary__value summary__value--in">$16,900.00</p>
+        <p class="summary__label">Out</p>
+        <p class="summary__value summary__value--out">$5,180.00</p>
+        <p class="summary__label">Interest</p>
+        <p class="summary__value summary__value--interest">$253.50</p>
+        <button class="btn--sort" fdprocessedid="ifz8z">↓ SORT</button>
+      </div>
       <div class="operation operation_transfer">
-        <h2>Transfer money</h2>
+        <h3>Transfer money</h3>
         <form action="" class="form form--loan">
           <input
             type="text"
@@ -139,7 +147,7 @@
         </form>
       </div>
       <div class="operation operation_loan">
-        <h2>Request loan</h2>
+        <h3>Request loan</h3>
         <form action="" class="form form--loan">
           <input
             type="number"
@@ -152,7 +160,25 @@
           <label class="form__label form__label--loan">Amount</label>
         </form>
       </div>
-      <div class="operation operation_close"></div>
+      <div class="operation operation_close">
+        <h3>Close account</h3>
+        <form action="" class="form form--close">
+          <input
+            type="text"
+            class="form__input form__input--user"
+            fdprocessedid="667trj"
+          />
+          <input
+            type="password"
+            maxlength="6"
+            class="form__input form__input--pin"
+            fdprocessedid="38i4a2"
+          />
+          <button class="form__btn form__btn--close" fdprocessedid="i94be">
+            →
+          </button>
+        </form>
+      </div>
       <div class="logout-timer"></div>
     </div>
     <!-- MAIN APP END -->
