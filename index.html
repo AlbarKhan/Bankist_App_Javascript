@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- HEADER START -->
     <header>
       <p class="welcome">Log in to get started</p>
       <img src="https://bankist.netlify.app/logo.png" alt="" class="logo" />
@@ -32,5 +33,128 @@
         </button>
       </form>
     </header>
+    <!-- HEADER END -->
+
+    <!-- MAIN APP START -->
+    <div class="app">
+      <div class="balance">
+        <div>
+          <p class="balance_label">Current balance</p>
+          <p class="balance_date text-secondary">As of 12/25/2023, 3:38 PM</p>
+        </div>
+        <p class="balance_value">$10909099</p>
+      </div>
+      <div class="movements">
+        <div class="movements_row">
+          <div class="movements-type movements-type--withdrawl">
+            8 withdrawl
+          </div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+        <div class="movements_row">
+          <div class="movements-type movements-type--deposit">8 withdrawl</div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+        <div class="movements_row">
+          <div class="movements-type movements-type--withdrawl">
+            8 withdrawl
+          </div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+        <div class="movements_row">
+          <div class="movements-type movements-type--deposit">8 withdrawl</div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+        <div class="movements_row">
+          <div class="movements-type movements-type--withdrawl">
+            8 withdrawl
+          </div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+        <div class="movements_row">
+          <div class="movements-type movements-type--deposit">8 withdrawl</div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+        <div class="movements_row">
+          <div class="movements-type movements-type--withdrawl">
+            8 withdrawl
+          </div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+        <div class="movements_row">
+          <div class="movements-type movements-type--deposit">8 withdrawl</div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+        <div class="movements_row">
+          <div class="movements-type movements-type--withdrawl">
+            8 withdrawl
+          </div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+        <div class="movements_row">
+          <div class="movements-type movements-type--deposit">8 withdrawl</div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+        <div class="movements_row">
+          <div class="movements-type movements-type--withdrawl">
+            8 withdrawl
+          </div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+        <div class="movements_row">
+          <div class="movements-type movements-type--deposit">8 withdrawl</div>
+          <div class="movements__date text-secondary">2/26/2020</div>
+          <div class="movements__value">-$30.00</div>
+        </div>
+      </div>
+      <div class="summary"></div>
+      <div class="operation operation_transfer">
+        <h2>Transfer money</h2>
+        <form action="" class="form form--loan">
+          <input
+            type="text"
+            class="form__input form__input--to"
+            fdprocessedid="d6q1g"
+          /><input
+            type="number"
+            class="form__input form__input--amount"
+            fdprocessedid="20kbvt"
+          />
+          <button class="form__btn form__btn--transfer" fdprocessedid="wwcj">
+            →
+          </button>
+          <label class="form__label">Transfer to</label>
+          <label class="form__label">Amount</label>
+        </form>
+      </div>
+      <div class="operation operation_loan">
+        <h2>Request loan</h2>
+        <form action="" class="form form--loan">
+          <input
+            type="number"
+            class="form__input form__input--loan-amount"
+            fdprocessedid="uxnfhq"
+          />
+          <button class="form__btn form__btn--loan" fdprocessedid="wb2cte">
+            →
+          </button>
+          <label class="form__label form__label--loan">Amount</label>
+        </form>
+      </div>
+      <div class="operation operation_close"></div>
+      <div class="logout-timer"></div>
+    </div>
+    <!-- MAIN APP END -->
   </body>
 </html>

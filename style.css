@@ -3,6 +3,7 @@
   padding: 0px;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  /* border: 1px solid; */
 }
 :root {
   --yellow: linear-gradient(to top left, #ffb003, #ffcb03);
@@ -13,13 +14,15 @@
 body {
   background-color: #f3f3f3;
   padding: 2rem;
+  height: 100vh;
 }
+/* <!-- HEADER START --> */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
-  height: 100%;
+  /* height: 100%; */
 }
 header .welcome {
   font-size: 19px;
@@ -56,3 +59,95 @@ header .login .login_btn i {
 .hide {
   display: none;
 }
+
+/* <!-- HEADER END --> */
+
+/* <!-- MAIN APP START --> */
+.app {
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+  grid-template-rows: auto repeat(3, 15rem) auto;
+  gap: 2rem;
+  max-width: 76rem;
+  margin: 4rem auto;
+}
+
+.app .balance {
+  grid-column: 1 / span 2;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+.app .balance .balance_label {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+.app .balance .balance_value {
+  font-size: 2.5rem;
+}
+.movements {
+  grid-row: 2 / span 3;
+  /* border: 1px solid; */
+  overflow: scroll;
+  background-color: #ffff;
+}
+
+.movements_row {
+  display: flex;
+  align-items: center;
+  padding: 2.25rem 4rem;
+  border-bottom: 1px solid #eee;
+}
+.movements-type--withdrawl {
+  background-image: var(--red);
+}
+.movements-type--deposit {
+  background-image: var(--green);
+}
+.movements-type {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+  padding: 0.1rem 1rem;
+  border-radius: 10rem;
+  margin-right: 2rem;
+}
+.movements_date {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+/* .movements_value {
+  font-size: 0.8rem;
+  float: right;
+  border: 10px solid;
+} */
+.movements__value {
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+.form {
+  display: grid;
+  grid-template-columns: 2.5fr 2.5fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.4rem 1rem;
+}
+.form_input {
+  width: 100%;
+  border: none;
+}
+.operation_transfer {
+  background-image: var(--yellow);
+}
+.operation {
+  padding: 3rem 4rem;
+  color: #333;
+  border-radius: 1rem;
+}
+.summary {
+  grid-row: 5/6;
+  padding: 0.3rem;
+}
+/* <!-- MAIN APP END --> */
