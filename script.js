@@ -28,21 +28,9 @@ const Movement = document.querySelector(".movements");
 const loanValue = document.querySelector(".form__input--loan-amount");
 const loanBtn = document.querySelector(".form__btn--loan");
 const requestedLoanAmount = document.querySelector(".form__input--loan-amount");
+const sortBtn = document.querySelector(".btn--sort");
 let currentUser;
-
-// .............................Loan Request.............................
-
-loanBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  const currentUserMovements = accounts[currentUser].movements;
-  const accountBalance = Math.trunc(
-    currentUserMovements.reduce((accu, ele) => accu + ele)
-  );
-  const tenPercentOfBalance = Math.trunc(accountBalance * 0.1);
-  if (requestedLoanAmount.value >= tenPercentOfBalance) {
-    accounts[currentUser].movements;
-  }
-});
+let sort = false;
 
 const printWelcome = function (name) {
   const now = new Date();
@@ -69,17 +57,12 @@ const printWelcome = function (name) {
 
 // .............................Display Movements.............................
 const displayMovements = function (movements, date) {
+  Movement.innerHTML = "";
   const now = new Date();
-  movements.forEach((movement, index) => {
+  movements.reverse().forEach((movement, index) => {
     const newMovement = document.createElement("div");
     newMovement.className = "movements_row";
-    let movementype;
-
-    if (movement < 0) {
-      movementype = "withdrawl";
-    } else {
-      movementype = "deposit";
-    }
+    let movementype = movement < 0 ? "withdrawl" : "deposit";
 
     // If The movement is Negative Then using Math.abs method to make it positive and the add the minus sign manually for proper Formatting
     const isNegative = movement < 0;
@@ -100,7 +83,31 @@ const displayMovements = function (movements, date) {
     `;
     Movement.appendChild(newMovement);
   });
+  console.log(movements.reverse());
 };
+
+// .............................Loan Request.............................
+
+loanBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  const currentUserMovements = accounts[currentUser].movements;
+  const accountBalance = Math.trunc(
+    currentUserMovements.reduce((accu, ele) => accu + ele)
+  );
+  const tenPercentOfBalance = Math.trunc(accountBalance * 0.1);
+  if (requestedLoanAmount.value > 0) {
+    if (tenPercentOfBalance >= requestedLoanAmount.value) {
+      currentUserMovements.push(Number(requestedLoanAmount.value));
+      requestedLoanAmount.value = "";
+      const displayLoanPlus = displayMovements(currentUserMovements);
+    } else {
+      alert("Not Enough money");
+      return;
+    }
+  } else {
+    return;
+  }
+});
 
 // .............................LOGIN Form.............................
 loginForm.addEventListener("submit", function (e) {
@@ -116,7 +123,7 @@ loginForm.addEventListener("submit", function (e) {
       userAuthentticated = true;
       currentUser = index;
       printWelcome(account.owner);
-      displayMovements(account.movements.reverse());
+      displayMovements(account.movements);
     }
   });
 
@@ -129,3 +136,8 @@ loginForm.addEventListener("submit", function (e) {
     alert("Wrong id Password");
   }
 });
+
+// const arr = [1, 2, 1, 1];
+
+// arr.push(999);
+// console.log();
