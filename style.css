@@ -57,7 +57,7 @@ header .login .login_btn i {
 }
 
 .hide {
-  display: none;
+  opacity: 0;
 }
 
 /* <!-- HEADER END --> */
@@ -71,6 +71,8 @@ header .login .login_btn i {
   gap: 1rem;
   max-width: 100rem;
   margin: 40px 209px;
+  /* opacity: 100; */
+  transition: all 0.9s;
 }
 
 .app .balance {
@@ -232,4 +234,5 @@ header .login .login_btn i {
   text-align: right;
   font-size: 12px;
 }
+
 /* <!-- MAIN APP END --> */
