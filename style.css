@@ -125,7 +125,8 @@ header .login .login_btn i {
   margin-right: 2rem;
 }
 .movements_date {
-  font-size: 0.8rem;
+  font-size: 11px;
+  border: 10px solid;
   text-transform: uppercase;
   font-weight: 500;
 }
