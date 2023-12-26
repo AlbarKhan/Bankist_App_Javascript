@@ -13,7 +13,7 @@
 
 body {
   background-color: #f3f3f3;
-  padding: 2rem;
+  padding: 20px;
   height: 100vh;
 }
 /* <!-- HEADER START --> */
@@ -67,10 +67,10 @@ header .login .login_btn i {
   position: relative;
   display: grid;
   grid-template-columns: 4fr 3fr;
-  grid-template-rows: auto repeat(3, 15rem) auto;
+  grid-template-rows: auto repeat(3, 10rem) auto;
   gap: 1rem;
   max-width: 100rem;
-  margin: 6rem 12rem;
+  margin: 40px 209px;
 }
 
 .app .balance {
@@ -81,19 +81,22 @@ header .login .login_btn i {
   /* align-items: center; */
 }
 .app .balance .balance_label {
-  font-size: 1.5rem;
+  font-size: 22px;
   font-weight: 500;
   margin-bottom: 0px;
 }
+.balance_date {
+  font-size: 14px;
+}
 .app .balance .balance_value {
-  font-size: 2.5rem;
+  font-size: 45px;
 }
 
 /*MOVEMENTS START  */
 .movements {
   grid-row: 2 / span 3;
   /* border: 1px solid; */
-  border-radius: 1rem;
+  border-radius: 10px;
   overflow: scroll;
   background-color: #ffff;
 }
@@ -140,14 +143,14 @@ header .login .login_btn i {
   display: grid;
   grid-template-columns: 2.5fr 2.5fr 1fr;
   grid-template-rows: auto auto;
-  gap: 0.4rem 1rem;
+  gap: 0.2rem 0.5rem;
 }
 .form__input {
   width: 100%;
   border: none;
   background-color: rgba(255, 255, 255, 0.4);
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 17px;
   text-align: center;
   color: #333;
   padding: 0.3rem 1rem;
@@ -165,6 +168,9 @@ header .login .login_btn i {
 /* FORM END */
 
 /* OPERATION START */
+.operation h3 {
+  font-size: 17px;
+}
 .operation_transfer {
   background-image: var(--yellow);
 }
@@ -178,7 +184,7 @@ header .login .login_btn i {
 .operation {
   padding: 30px 40px;
   color: #333;
-  border-radius: 1rem;
+  border-radius: 10px;
 }
 
 /* OPERATION END */
@@ -191,32 +197,39 @@ header .login .login_btn i {
 }
 
 .summary__label {
-  font-size: 1.2rem;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
-  margin-right: 0.8rem;
+  margin-right: 8px;
+  margin-bottom: 0px;
 }
 
 .summary__value--in {
   color: #66c873;
 }
+.summary__value--out {
+  color: #f5465d;
+}
+.summary__value--interest {
+  color: #66c873;
+}
 .summary__value {
-  font-size: 17px;
-  margin-right: 2.5rem;
+  font-size: 22px;
+  margin-right: 25px;
 }
 .btn--sort {
   margin-left: auto;
   border: none;
   background: none;
-  font-size: 1.4rem;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
 }
 
 .logout-timer {
-  padding: 0 0.3rem;
-  margin-top: 1.9rem;
+  padding: 0 3px;
+  margin-top: 19px;
   text-align: right;
-  font-size: 1.25rem;
+  font-size: 12px;
 }
 /* <!-- MAIN APP END --> */
