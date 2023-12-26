@@ -21,7 +21,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
   /* height: 100%; */
 }
 header .welcome {
@@ -64,17 +64,19 @@ header .login .login_btn i {
 
 /* <!-- MAIN APP START --> */
 .app {
+  position: relative;
   display: grid;
   grid-template-columns: 4fr 3fr;
   grid-template-rows: auto repeat(3, 15rem) auto;
-  gap: 2rem;
-  max-width: 76rem;
-  margin: 4rem auto;
+  gap: 1rem;
+  max-width: 100rem;
+  margin: 6rem 12rem;
 }
 
 .app .balance {
   grid-column: 1 / span 2;
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
   /* align-items: center; */
 }
@@ -91,6 +93,7 @@ header .login .login_btn i {
 .movements {
   grid-row: 2 / span 3;
   /* border: 1px solid; */
+  border-radius: 1rem;
   overflow: scroll;
   background-color: #ffff;
 }
@@ -98,7 +101,7 @@ header .login .login_btn i {
 .movements_row {
   display: flex;
   align-items: center;
-  padding: 2.25rem 4rem;
+  padding: 22.5px 40px;
   border-bottom: 1px solid #eee;
 }
 .movements-type--withdrawl {
@@ -173,7 +176,7 @@ header .login .login_btn i {
   background-image: var(--red);
 }
 .operation {
-  padding: 3rem 4rem;
+  padding: 30px 40px;
   color: #333;
   border-radius: 1rem;
 }
@@ -198,7 +201,22 @@ header .login .login_btn i {
   color: #66c873;
 }
 .summary__value {
-  font-size: 2.2rem;
+  font-size: 17px;
   margin-right: 2.5rem;
+}
+.btn--sort {
+  margin-left: auto;
+  border: none;
+  background: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.logout-timer {
+  padding: 0 0.3rem;
+  margin-top: 1.9rem;
+  text-align: right;
+  font-size: 1.25rem;
 }
 /* <!-- MAIN APP END --> */
