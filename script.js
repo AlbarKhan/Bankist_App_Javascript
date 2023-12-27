@@ -31,6 +31,7 @@ const requestedLoanAmount = document.querySelector(".form__input--loan-amount");
 const sortBtn = document.querySelector(".btn--sort");
 let currentUser;
 let sort = false;
+// const currentUserMovements = accounts[currentUser].
 
 const printWelcome = function (name) {
   const now = new Date();
@@ -86,6 +87,8 @@ const displayMovements = function (movements, date) {
   console.log(movements.reverse());
 };
 
+// .............................SORTING .................................
+sortBtn.addEventListener("click", function (e) {});
 // .............................Loan Request.............................
 
 loanBtn.addEventListener("click", function (e) {
@@ -135,9 +138,12 @@ loginForm.addEventListener("submit", function (e) {
   } else {
     alert("Wrong id Password");
   }
+
+  console.log(accounts[currentUser].movements);
 });
 
 // const arr = [1, 2, 1, 1];
 
 // arr.push(999);
+
 // console.log();
