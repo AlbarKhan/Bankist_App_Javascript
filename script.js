@@ -30,7 +30,7 @@ const loanBtn = document.querySelector(".form__btn--loan");
 const requestedLoanAmount = document.querySelector(".form__input--loan-amount");
 const sortBtn = document.querySelector(".btn--sort");
 let currentUser;
-let sort = false;
+// let sort = false;
 // const currentUserMovements = accounts[currentUser].
 
 const printWelcome = function (name) {
@@ -57,10 +57,13 @@ const printWelcome = function (name) {
 };
 
 // .............................Display Movements.............................
-const displayMovements = function (movements, date) {
+const displayMovements = function (movements, sort = false) {
   Movement.innerHTML = "";
   const now = new Date();
-  movements.reverse().forEach((movement, index) => {
+
+  const mov = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  mov.reverse().forEach((movement, index) => {
     const newMovement = document.createElement("div");
     newMovement.className = "movements_row";
     let movementype = movement < 0 ? "withdrawl" : "deposit";
@@ -88,9 +91,14 @@ const displayMovements = function (movements, date) {
 };
 
 // .............................SORTING .................................
-sortBtn.addEventListener("click", function (e) {});
-// .............................Loan Request.............................
+let sorted = false;
+sortBtn.addEventListener("click", function () {
+  displayMovements(accounts[currentUser].movements, !sorted);
+  sorted = !sorted;
+});
 
+// .............................Loan Request.............................
+// const currentUserMovements = accounts[].movements;
 loanBtn.addEventListener("click", function (e) {
   e.preventDefault();
   const currentUserMovements = accounts[currentUser].movements;
