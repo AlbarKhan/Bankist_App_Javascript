@@ -26,12 +26,14 @@ const pin = document.getElementById("pin");
 const welcomeText = document.querySelector(".welcome");
 const Movement = document.querySelector(".movements");
 const loanValue = document.querySelector(".form__input--loan-amount");
+const requestAmount = document.querySelector(".form__input--amount");
 const loanBtn = document.querySelector(".form__btn--loan");
+const transferBtn = document.querySelector(".form__btn--transfer");
 const requestedLoanAmount = document.querySelector(".form__input--loan-amount");
 const sortBtn = document.querySelector(".btn--sort");
+const labelBalance = document.querySelector(".balance_value");
+let currentAccount;
 let currentUser;
-// let sort = false;
-// const currentUserMovements = accounts[currentUser].
 
 const printWelcome = function (name) {
   const now = new Date();
@@ -54,6 +56,12 @@ const printWelcome = function (name) {
 
   //   welcomeText.textContent = `${greeting}, ${name}!`;
   // };
+};
+
+const calcPrintBalance = function (movements) {
+  const balance = movements.reduce((accu, ele) => accu + ele);
+  labelBalance.textContent = `$${balance}`;
+  return balance;
 };
 
 // .............................Display Movements.............................
@@ -87,7 +95,7 @@ const displayMovements = function (movements, sort = false) {
     `;
     Movement.appendChild(newMovement);
   });
-  console.log(movements.reverse());
+  return Movement;
 };
 
 // .............................SORTING .................................
@@ -97,20 +105,46 @@ sortBtn.addEventListener("click", function () {
   sorted = !sorted;
 });
 
+// .............................Transfer Money .................................
+transferBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  const transerTo = document.querySelector(".form__input--to").value;
+
+  const receiver = accounts.find(
+    (acc) => acc.userid == transerTo.toLowerCase()
+  );
+  const balance = calcPrintBalance(currentAccount.movements);
+  // console.log(balance);
+  const amount = +requestAmount.value;
+  if (
+    receiver &&
+    requestAmount &&
+    balance >= amount &&
+    receiver.userid != currentAccount.userid
+  ) {
+    receiver.movements.push(amount);
+    currentAccount.movements.push(-amount);
+    displayMovements(currentAccount.movements);
+    calcPrintBalance(currentAccount.movements);
+  } else {
+    alert("worgn user id");
+    return;
+  }
+});
+console.log(currentAccount);
+
 // .............................Loan Request.............................
-// const currentUserMovements = accounts[].movements;
 loanBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  const currentUserMovements = accounts[currentUser].movements;
   const accountBalance = Math.trunc(
-    currentUserMovements.reduce((accu, ele) => accu + ele)
+    currentAccount.movements.reduce((accu, ele) => accu + ele)
   );
   const tenPercentOfBalance = Math.trunc(accountBalance * 0.1);
   if (requestedLoanAmount.value > 0) {
     if (tenPercentOfBalance >= requestedLoanAmount.value) {
-      currentUserMovements.push(Number(requestedLoanAmount.value));
+      currentAccount.movements.push(Number(requestedLoanAmount.value));
       requestedLoanAmount.value = "";
-      const displayLoanPlus = displayMovements(currentUserMovements);
+      const displayLoanPlus = displayMovements(currentAccount.movements);
     } else {
       alert("Not Enough money");
       return;
@@ -133,8 +167,10 @@ loginForm.addEventListener("submit", function (e) {
     ) {
       userAuthentticated = true;
       currentUser = index;
+      currentAccount = accounts[currentUser];
       printWelcome(account.owner);
       displayMovements(account.movements);
+      calcPrintBalance(account.movements);
     }
   });
 
