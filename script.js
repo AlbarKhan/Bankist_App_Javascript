@@ -4,6 +4,16 @@ const account1 = {
   owner: "Albar Khan",
   userid: "ak",
   movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
+  movementsDate: [
+    "2019-11-18T21:31:17.178z",
+    "2019-12-28T09  :21:17.178z",
+    "2019-1-18T21:12:17.178z",
+    "2019-2-18T21:47:17.178z",
+    "2019-3-18T21:42:17.178z",
+    "2019-4-18T21:14:17.178z",
+    "2019-5-18T21:34:17.178z",
+    "2019-6-18T21:21:17.178z",
+  ],
   interestRate: 1.2,
   pin: 111,
 };
@@ -12,12 +22,13 @@ const account2 = {
   owner: "Tausif shaikh",
   userid: "ts",
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  movementsDate: [],
   interestRate: 1.1,
   pin: 222,
 };
 
 const accounts = [account1, account2];
-console.log(accounts);
+// console.log(accounts);
 
 const loginForm = document.querySelector(".login");
 const app = document.querySelector(".app");
@@ -32,6 +43,8 @@ const transferBtn = document.querySelector(".form__btn--transfer");
 const requestedLoanAmount = document.querySelector(".form__input--loan-amount");
 const sortBtn = document.querySelector(".btn--sort");
 const labelBalance = document.querySelector(".balance_value");
+const labelsummaryvaluein = document.querySelector(".summary__value--in");
+const labelsummaryvalueOut = document.querySelector(".summary__value--out");
 let currentAccount;
 let currentUser;
 
@@ -64,13 +77,27 @@ const calcPrintBalance = function (movements) {
   return balance;
 };
 
+const totalInOut = function (movements) {
+  let totalIn = 0;
+  let totalOut = 0;
+  movements.forEach((mov) => {
+    if (mov > 1) {
+      totalIn += mov;
+    } else {
+      totalOut += mov;
+    }
+  });
+  labelsummaryvaluein.textContent = `$${totalIn}`;
+  labelsummaryvalueOut.textContent = `$${Math.floor(Math.abs(totalOut))}`;
+  // return totalIn;
+};
+
 // .............................Display Movements.............................
 const displayMovements = function (movements, sort = false) {
   Movement.innerHTML = "";
   const now = new Date();
 
   const mov = sort ? movements.slice().sort((a, b) => a - b) : movements;
-
   mov.reverse().forEach((movement, index) => {
     const newMovement = document.createElement("div");
     newMovement.className = "movements_row";
@@ -89,7 +116,7 @@ const displayMovements = function (movements, sort = false) {
       movements.length - index
     } ${movementype}</div>
     <div class="movements__date text-secondary">${
-      now.getDate() + "/" + now.getMonth() + "/" + now.getFullYear()
+      now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear()
     }</div>
     <div class="movements__value">${displaValue}</div>
     `;
@@ -97,6 +124,13 @@ const displayMovements = function (movements, sort = false) {
   });
   return Movement;
 };
+
+function updateUI(account) {
+  displayMovements(account.movements);
+  calcPrintBalance(account.movements);
+  totalInOut(account.movements);
+  return;
+}
 
 // .............................SORTING .................................
 let sorted = false;
@@ -113,6 +147,7 @@ transferBtn.addEventListener("click", function (e) {
   const receiver = accounts.find(
     (acc) => acc.userid == transerTo.toLowerCase()
   );
+  console.log(receiver);
   const balance = calcPrintBalance(currentAccount.movements);
   // console.log(balance);
   const amount = +requestAmount.value;
@@ -124,14 +159,15 @@ transferBtn.addEventListener("click", function (e) {
   ) {
     receiver.movements.push(amount);
     currentAccount.movements.push(-amount);
-    displayMovements(currentAccount.movements);
-    calcPrintBalance(currentAccount.movements);
+    // displayMovements(currentAccount.movements);
+    // calcPrintBalance(currentAccount.movements);
+    updateUI(currentAccount);
   } else {
     alert("worgn user id");
     return;
   }
 });
-console.log(currentAccount);
+// console.log(currentAccount);
 
 // .............................Loan Request.............................
 loanBtn.addEventListener("click", function (e) {
@@ -144,7 +180,10 @@ loanBtn.addEventListener("click", function (e) {
     if (tenPercentOfBalance >= requestedLoanAmount.value) {
       currentAccount.movements.push(Number(requestedLoanAmount.value));
       requestedLoanAmount.value = "";
-      const displayLoanPlus = displayMovements(currentAccount.movements);
+      // displayMovements(currentAccount.movements);
+      // calcPrintBalance(currentAccount.movements);
+      // totalInOut(currentAccount.movements);
+      updateUI(currentAccount);
     } else {
       alert("Not Enough money");
       return;
@@ -169,8 +208,7 @@ loginForm.addEventListener("submit", function (e) {
       currentUser = index;
       currentAccount = accounts[currentUser];
       printWelcome(account.owner);
-      displayMovements(account.movements);
-      calcPrintBalance(account.movements);
+      updateUI(account);
     }
   });
 
@@ -182,12 +220,9 @@ loginForm.addEventListener("submit", function (e) {
   } else {
     alert("Wrong id Password");
   }
-
-  console.log(accounts[currentUser].movements);
+  currentAccount;
 });
 
 // const arr = [1, 2, 1, 1];
 
 // arr.push(999);
-
-// console.log();
