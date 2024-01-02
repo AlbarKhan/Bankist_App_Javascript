@@ -45,7 +45,8 @@ const sortBtn = document.querySelector(".btn--sort");
 const labelBalance = document.querySelector(".balance_value");
 const labelsummaryvaluein = document.querySelector(".summary__value--in");
 const labelsummaryvalueOut = document.querySelector(".summary__value--out");
-let currentAccount;
+const labeltimer = document.querySelector(".timer");
+let currentAccount, timer;
 let currentUser;
 
 const printWelcome = function (name) {
@@ -135,7 +136,7 @@ function updateUI(account) {
 // .............................SORTING .................................
 let sorted = false;
 sortBtn.addEventListener("click", function () {
-  displayMovements(accounts[currentUser].movements, !sorted);
+  displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
 
@@ -180,9 +181,6 @@ loanBtn.addEventListener("click", function (e) {
         requestedLoanAmount.value = "";
         updateUI(currentAccount);
       }, 3000);
-      // currentAccount.movements.push(Number(requestedLoanAmount.value));
-      // requestedLoanAmount.value = "";
-      // updateUI(currentAccount);
     } else {
       alert("Not Enough money");
       return;
@@ -192,6 +190,25 @@ loanBtn.addEventListener("click", function (e) {
   }
 });
 
+const logoutTimer = function (params) {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    labeltimer.textContent = `${min}:${sec}`;
+    time--;
+    if (time === 0) {
+      clearInterval(timer);
+      app.style.opacity = 0;
+      welcomeText.textContent = "login to get started";
+    }
+  };
+  let time = 100;
+  tick();
+  timer = setInterval(tick, 1000);
+  return timer;
+};
+
+// logoutTimer();
 // .............................LOGIN Form.............................
 loginForm.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -208,6 +225,8 @@ loginForm.addEventListener("submit", function (e) {
       currentAccount = accounts[currentUser];
       printWelcome(account.owner);
       updateUI(account);
+      if (timer) clearInterval(timer);
+      timer = logoutTimer();
     }
   });
 
