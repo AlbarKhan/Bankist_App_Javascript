@@ -149,7 +149,6 @@ transferBtn.addEventListener("click", function (e) {
   );
   console.log(receiver);
   const balance = calcPrintBalance(currentAccount.movements);
-  // console.log(balance);
   const amount = +requestAmount.value;
   if (
     receiver &&
@@ -159,8 +158,6 @@ transferBtn.addEventListener("click", function (e) {
   ) {
     receiver.movements.push(amount);
     currentAccount.movements.push(-amount);
-    // displayMovements(currentAccount.movements);
-    // calcPrintBalance(currentAccount.movements);
     updateUI(currentAccount);
   } else {
     alert("worgn user id");
@@ -178,12 +175,14 @@ loanBtn.addEventListener("click", function (e) {
   const tenPercentOfBalance = Math.trunc(accountBalance * 0.1);
   if (requestedLoanAmount.value > 0) {
     if (tenPercentOfBalance >= requestedLoanAmount.value) {
-      currentAccount.movements.push(Number(requestedLoanAmount.value));
-      requestedLoanAmount.value = "";
-      // displayMovements(currentAccount.movements);
-      // calcPrintBalance(currentAccount.movements);
-      // totalInOut(currentAccount.movements);
-      updateUI(currentAccount);
+      setTimeout(() => {
+        currentAccount.movements.push(Number(requestedLoanAmount.value));
+        requestedLoanAmount.value = "";
+        updateUI(currentAccount);
+      }, 3000);
+      // currentAccount.movements.push(Number(requestedLoanAmount.value));
+      // requestedLoanAmount.value = "";
+      // updateUI(currentAccount);
     } else {
       alert("Not Enough money");
       return;
