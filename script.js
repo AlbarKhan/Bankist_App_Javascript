@@ -45,6 +45,9 @@ const sortBtn = document.querySelector(".btn--sort");
 const labelBalance = document.querySelector(".balance_value");
 const labelsummaryvaluein = document.querySelector(".summary__value--in");
 const labelsummaryvalueOut = document.querySelector(".summary__value--out");
+const closeAccountbtn = document.querySelector(".form__btn--close");
+const closeAccountUserId = document.querySelector(".form__input--user");
+const closeAccountPin = document.querySelector(".form__input--pin");
 const labeltimer = document.querySelector(".timer");
 let currentAccount, timer;
 let currentUser;
@@ -190,7 +193,7 @@ loanBtn.addEventListener("click", function (e) {
   }
 });
 
-const logoutTimer = function (params) {
+const logoutTimer = function () {
   const tick = function () {
     const min = String(Math.trunc(time / 60)).padStart(2, 0);
     const sec = String(time % 60).padStart(2, 0);
@@ -202,11 +205,29 @@ const logoutTimer = function (params) {
       welcomeText.textContent = "login to get started";
     }
   };
-  let time = 100;
+  let time = 600;
   tick();
   timer = setInterval(tick, 1000);
   return timer;
 };
+
+// close Account
+
+closeAccountbtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log("working...😂😂");
+  if (
+    currentAccount.userid == closeAccountUserId.value &&
+    currentAccount.pin == closeAccountPin.value
+  ) {
+    console.log(closeAccountUserId.value);
+    console.log(currentUser);
+    accounts.splice(currentUser, 1);
+    app.style.opacity = 0;
+  } else {
+    return;
+  }
+});
 
 // logoutTimer();
 // .............................LOGIN Form.............................
