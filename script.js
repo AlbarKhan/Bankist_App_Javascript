@@ -48,6 +48,7 @@ const labelsummaryvalueOut = document.querySelector(".summary__value--out");
 const closeAccountbtn = document.querySelector(".form__btn--close");
 const closeAccountUserId = document.querySelector(".form__input--user");
 const closeAccountPin = document.querySelector(".form__input--pin");
+const balanceDateLabel = document.querySelector(".balance_date");
 const labeltimer = document.querySelector(".timer");
 let currentAccount, timer;
 let currentUser;
@@ -224,9 +225,12 @@ closeAccountbtn.addEventListener("click", function (e) {
     console.log(currentUser);
     accounts.splice(currentUser, 1);
     app.style.opacity = 0;
+    welcomeText.textContent = "login to get started";
   } else {
     return;
   }
+  closeAccountUserId.value = "";
+  closeAccountPin.value = "";
 });
 
 // logoutTimer();
@@ -234,7 +238,7 @@ closeAccountbtn.addEventListener("click", function (e) {
 loginForm.addEventListener("submit", function (e) {
   e.preventDefault();
   let userAuthentticated = false;
-
+  const now = new Date();
   accounts.forEach((account, index) => {
     if (
       !userAuthentticated &&
@@ -248,6 +252,9 @@ loginForm.addEventListener("submit", function (e) {
       updateUI(account);
       if (timer) clearInterval(timer);
       timer = logoutTimer();
+      balanceDateLabel.textContent = `As of ${new Intl.DateTimeFormat(
+        "en-GB"
+      ).format(now)}`;
     }
   });
 
